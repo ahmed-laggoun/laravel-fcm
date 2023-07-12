@@ -1,74 +1,74 @@
 <?php
 
-namespace Kutia\Larafirebase\Messages;
+namespace SmirlTech\LaravelFcm\Messages;
 
-use Kutia\Larafirebase\Facades\Larafirebase;
+use SmirlTech\LaravelFcm\Facades\LaravelFcm;
 
 class FirebaseMessage
 {
     const PRIORITY_NORMAL = 'normal';
 
-    private $title;
+    private string $title;
 
-    private $body;
+    private string $body;
 
-    private $clickAction;
+    private string $clickAction;
 
-    private $image;
+    private string $image;
 
-    private $icon;
+    private string $icon;
 
-    private $sound;
+    private string $sound;
 
-    private $additionalData;
+    private string $additionalData;
 
-    private $priority = self::PRIORITY_NORMAL;
+    private string $priority = self::PRIORITY_NORMAL;
 
-    private $fromArray;
+    private string $fromArray;
 
-    public function withTitle($title)
+    public function withTitle($title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function withBody($body)
+    public function withBody($body): static
     {
         $this->body = $body;
 
         return $this;
     }
 
-    public function withClickAction($clickAction)
+    public function withClickAction($clickAction): static
     {
         $this->clickAction = $clickAction;
 
         return $this;
     }
 
-    public function withImage($image)
+    public function withImage($image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function withIcon($icon)
+    public function withIcon($icon): static
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function withSound($sound)
+    public function withSound($sound): static
     {
         $this->sound = $sound;
 
         return $this;
     }
 
-    public function withAdditionalData($additionalData)
+    public function withAdditionalData($additionalData): static
     {
         $this->additionalData = $additionalData;
 
@@ -92,10 +92,10 @@ class FirebaseMessage
     public function asNotification($deviceTokens)
     {
         if ($this->fromArray) {
-            return Larafirebase::fromArray($this->fromArray)->sendNotification($deviceTokens);
+            return LaravelFcm::fromArray($this->fromArray)->sendNotification($deviceTokens);
         }
 
-        return Larafirebase::withTitle($this->title)
+        return LaravelFcm::withTitle($this->title)
             ->withBody($this->body)
             ->withClickAction($this->clickAction)
             ->withImage($this->image)
@@ -109,10 +109,10 @@ class FirebaseMessage
     public function asMessage($deviceTokens)
     {
         if ($this->fromArray) {
-            return Larafirebase::fromArray($this->fromArray)->sendMessage($deviceTokens);
+            return LaravelFcm::fromArray($this->fromArray)->sendMessage($deviceTokens);
         }
 
-        return Larafirebase::withTitle($this->title)
+        return LaravelFcm::withTitle($this->title)
             ->withBody($this->body)
             ->withAdditionalData($this->additionalData)
             ->sendMessage($deviceTokens);

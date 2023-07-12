@@ -1,6 +1,6 @@
 <?php
 
-namespace Kutia\Larafirebase\Exceptions;
+namespace SmirlTech\LaravelFcm\Exceptions;
 
 use Exception;
 

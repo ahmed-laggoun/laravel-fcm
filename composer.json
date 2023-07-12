@@ -1,25 +1,31 @@
 {
-    "name": "kutia-software-company/larafirebase",
+    "name": "smirltech/laravel-fcm",
     "description": "Laravel Firebase Cloud Messaging.",
-    "homepage": "https://github.com/kutia-software-company/larafirebase",
+    "homepage": "https://github.com/smirltech/laravel-fcm",
     "license": "MIT",
     "authors": [
         {
             "name": "Gentrit Abazi",
             "email": "gentritabazi01@gmail.com"
+        },
+        {
+            "name": "Marien Mupenda",
+            "email": "marien@smirlech.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Kutia\\Larafirebase\\": "src/"
+            "SmirlTech\\LaravelFcm\\": "src/"
         },
         "files" : [
             "src/Helpers/All.php"
         ]
     },
     "require": {
+        "php": "^8.1",
         "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
-        "illuminate/notifications": "^7.0|^8.0|^9.0|^10.0"
+        "illuminate/notifications": "^7.0|^8.0|^9.0|^10.0",
+        "spatie/laravel-package-tools": "^1.14.1"
     },
     "config": {
         "sort-packages": true
@@ -29,7 +35,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Kutia\\Larafirebase\\Providers\\LarafirebaseServiceProvider"
+                "LaravelFcmServiceProvider"
             ]
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kutia\Larafirebase\Channels;
+namespace SmirlTech\LaravelFcm\Channels;
 
 use Illuminate\Notifications\Notification;
 
@@ -9,9 +9,9 @@ class FirebaseChannel
     /**
      * Send the given notification.
      */
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification): void
     {
-        /** @var \Kutia\Larafirebase\FirebaseMessage $message */
+        /** @var \SmirlTech\LaravelFcm\FirebaseMessage $message */
         $message = $notification->toFirebase($notifiable);
     }
 }

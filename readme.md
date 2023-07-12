@@ -1,14 +1,14 @@
 <p align="center"><img src="/art/cover.png" height="400"></p>
 
 <p align="center">
-    <a href="https://packagist.org/packages/kutia-software-company/larafirebase">
-        <img src="https://img.shields.io/packagist/dt/kutia-software-company/larafirebase" alt="Total Downloads">
+    <a href="https://packagist.org/packages/smirltech/laravel-fcm">
+        <img src="https://img.shields.io/packagist/dt/smirltech/laravel-fcm" alt="Total Downloads">
     </a>
-    <a href="https://packagist.org/packages/kutia-software-company/larafirebase">
-        <img src="https://img.shields.io/packagist/v/kutia-software-company/larafirebase" alt="Latest Stable Version">
+    <a href="https://packagist.org/packages/smirltech/laravel-fcm">
+        <img src="https://img.shields.io/packagist/v/smirltech/laravel-fcm" alt="Latest Stable Version">
     </a>
-    <a href="https://packagist.org/packages/kutia-software-company/larafirebase">
-        <img src="https://img.shields.io/packagist/l/kutia-software-company/larafirebase" alt="License">
+    <a href="https://packagist.org/packages/smirltech/laravel-fcm">
+        <img src="https://img.shields.io/packagist/l/smirltech/laravel-fcm" alt="License">
     </a>
 </p>
 
@@ -29,12 +29,12 @@ Follow the steps below to install the package.
 **Composer**
 
 ```
-composer require kutia-software-company/larafirebase
+composer require smirltech/laravel-fcm
 ```
 
 **Copy Config**
 
-Run `php artisan vendor:publish --provider="Kutia\Larafirebase\Providers\LarafirebaseServiceProvider"` to publish the `larafirebase.php` config file.
+Run `php artisan vendor:publish --provider="SmirlTech\LaravelFcm\Providers\LarafirebaseServiceProvider"` to publish the `larafirebase.php` config file.
 
 **Get Athentication Key**
 
@@ -53,7 +53,7 @@ Follow the steps below to find how to use the package.
 Example usage in **Controller/Service** or any class:
 
 ```php
-use Kutia\Larafirebase\Facades\Larafirebase;
+use SmirlTech\LaravelFcm\Facades\LaravelFcm;
 
 class MyController
 {
@@ -61,7 +61,7 @@ class MyController
 
     public function sendNotification()
     {
-        return Larafirebase::withTitle('Test Title')
+        return LaravelFcm::withTitle('Test Title')
             ->withBody('Test body')
             ->withImage('https://firebase.google.com/images/social.png')
             ->withIcon('https://seeklogo.com/images/F/firebase-logo-402F407EE0-seeklogo.com.png')
@@ -75,17 +75,17 @@ class MyController
             ->sendNotification($this->deviceTokens);
         
         // Or
-        return Larafirebase::fromArray(['title' => 'Test Title', 'body' => 'Test body'])->sendNotification($this->deviceTokens);
+        return LaravelFcm::fromArray(['title' => 'Test Title', 'body' => 'Test body'])->sendNotification($this->deviceTokens);
     }
 
     public function sendMessage()
     {
-        return Larafirebase::withTitle('Test Title')
+        return LaravelFcm::withTitle('Test Title')
             ->withBody('Test body')
             ->sendMessage($this->deviceTokens);
             
         // Or
-        return Larafirebase::fromArray(['title' => 'Test Title', 'body' => 'Test body'])->sendMessage($this->deviceTokens);
+        return LaravelFcm::fromArray(['title' => 'Test Title', 'body' => 'Test body'])->sendMessage($this->deviceTokens);
     }
 }
 ```
@@ -94,7 +94,7 @@ Example usage in **Notification** class:
 
 ```php
 use Illuminate\Notifications\Notification;
-use Kutia\Larafirebase\Messages\FirebaseMessage;
+use SmirlTech\LaravelFcm\Messages\FirebaseMessage;
 
 class SendBirthdayReminder extends Notification
 {
