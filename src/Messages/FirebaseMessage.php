@@ -2,29 +2,34 @@
 
 namespace SmirlTech\LaravelFcm\Messages;
 
+use http\Client\Response;
 use SmirlTech\LaravelFcm\Enums\MessagePriority;
 use SmirlTech\LaravelFcm\Facades\LaravelFcm;
 
 class FirebaseMessage
 {
 
-    private string $title;
+    private ?string $title = null;
 
-    private string $body;
+    private ?string $body= null;
 
-    private string $clickAction;
+    private ?string $clickAction= null;
 
-    private string $image;
+    private ?string $image= null;
 
-    private string $icon;
+    private ?string $icon= null;
 
-    private string $sound;
+    private ?array $additionalData= null;
 
-    private string $additionalData;
+    private ?string $sound=null;
 
     private MessagePriority $priority = MessagePriority::normal;
 
-    private array $fromArray;
+    private ?array $fromArray=null;
+
+    private ?string $authenticationKey=null;
+
+    private ?array $fromRaw=null;
 
     public function withTitle(string $title): static
     {
@@ -68,7 +73,7 @@ class FirebaseMessage
         return $this;
     }
 
-    public function withAdditionalData(string $additionalData): static
+    public function withAdditionalData(array $additionalData): static
     {
         $this->additionalData = $additionalData;
 
@@ -89,7 +94,11 @@ class FirebaseMessage
         return $this;
     }
 
-    public function asNotification($deviceTokens)
+    /**
+     * @param array|string $deviceTokens
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function asNotification(array|string $deviceTokens): \Illuminate\Http\Client\Response
     {
         if ($this->fromArray) {
             return LaravelFcm::fromArray($this->fromArray)->sendNotification($deviceTokens);
@@ -106,7 +115,11 @@ class FirebaseMessage
             ->sendNotification($deviceTokens);
     }
 
-    public function asMessage($deviceTokens)
+    /**
+     * @param array|string $deviceTokens
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function asMessage(array|string $deviceTokens): \Illuminate\Http\Client\Response
     {
         if ($this->fromArray) {
             return LaravelFcm::fromArray($this->fromArray)->sendMessage($deviceTokens);
