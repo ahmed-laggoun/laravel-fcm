@@ -34,13 +34,13 @@ composer require smirltech/laravel-fcm
 
 **Copy Config**
 
-Run `php artisan vendor:publish --provider="SmirlTech\LaravelFcm\Providers\LarafirebaseServiceProvider"` to publish the `larafirebase.php` config file.
+Run `php artisan vendor:publish --provider="SmirlTech\LaravelFcm\Providers\LaravelFcmServiceProvider"` to publish the `larafirebase.php` config file.
 
 **Get Athentication Key**
 
 Get Authentication Key from https://console.firebase.google.com/
 
-**Configure larafirebase.php as needed**
+**Configure laravel-fcm.php as needed**
 
 ```
 'authentication_key' => '{AUTHENTICATION_KEY}'

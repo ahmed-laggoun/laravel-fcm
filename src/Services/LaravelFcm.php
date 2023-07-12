@@ -4,114 +4,117 @@ namespace SmirlTech\LaravelFcm\Services;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use SmirlTech\LaravelFcm\Enums\MessagePriority;
 use SmirlTech\LaravelFcm\Exceptions\UnsupportedTokenFormat;
 
 class LaravelFcm
 {
-    const PRIORITY_NORMAL = 'normal';
 
-    private $title;
+    private string $title;
 
-    private $body;
+    private string $body;
 
-    private $clickAction;
+    private string $clickAction;
 
-    private $image;
+    private string $image;
 
-    private $icon;
+    private string $icon;
 
-    private $additionalData;
+    private array $additionalData;
 
-    private $sound;
+    private string $sound;
 
-    private $priority = self::PRIORITY_NORMAL;
+    private MessagePriority $priority = MessagePriority::normal;
 
-    private $fromArray;
+    private array $fromArray;
 
-    private $authenticationKey;
+    private string $authenticationKey;
 
-    private $fromRaw;
+    private string $fromRaw;
 
     const API_URI = 'https://fcm.googleapis.com/fcm/send';
 
-    public function withTitle($title)
+    public function withTitle(string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function withBody($body)
+    public function withBody(string $body): static
     {
         $this->body = $body;
 
         return $this;
     }
 
-    public function withClickAction($clickAction)
+    public function withClickAction(string $clickAction): static
     {
         $this->clickAction = $clickAction;
 
         return $this;
     }
 
-    public function withImage($image)
+    public function withImage(string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function withIcon($icon)
+    public function withIcon(string $icon): static
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function withSound($sound)
+    public function withSound(string $sound): static
     {
         $this->sound = $sound;
 
         return $this;
     }
 
-    public function withPriority($priority)
+    public function withPriority(MessagePriority $priority): static
     {
         $this->priority = $priority;
 
         return $this;
     }
 
-    public function withAdditionalData($additionalData)
+    public function withAdditionalData(array $additionalData): static
     {
         $this->additionalData = $additionalData;
 
         return $this;
     }
 
-    public function withAuthenticationKey($authenticationKey)
+    public function withAuthenticationKey(string $authenticationKey): static
     {
         $this->authenticationKey = $authenticationKey;
 
         return $this;
     }
 
-    public function fromArray($fromArray)
+    public function fromArray(array $fromArray): static
     {
         $this->fromArray = $fromArray;
 
         return $this;
     }
 
-    public function fromRaw($fromRaw)
+    public function fromRaw($fromRaw): static
     {
         $this->fromRaw = $fromRaw;
 
         return $this;
     }
 
-    public function sendNotification($tokens)
+    /**
+     * @throws UnsupportedTokenFormat
+     */
+    public function sendNotification(array|string $tokens): Response
     {
         $fields = array(
             'registration_ids' => $this->validateToken($tokens),
@@ -130,9 +133,12 @@ class LaravelFcm
         return $this->callApi($fields);
     }
 
-    public function sendMessage($tokens)
+    /**
+     * @throws UnsupportedTokenFormat
+     */
+    public function sendMessage(array|string $tokens): Response
     {
-        $data = ($this->fromArray) ? $this->fromArray : [
+        $data = ($this->fromArray) ?: [
             'title' => $this->title,
             'body' => $this->body,
         ];
@@ -147,23 +153,24 @@ class LaravelFcm
         return $this->callApi($fields);
     }
 
-    public function send()
+    public function send(): Response
     {
         return $this->callApi($this->fromRaw);
     }
 
     private function callApi($fields): Response
     {
-        $authenticationKey = isset($this->authenticationKey) ? $this->authenticationKey:config('larafirebase.authentication_key');
+        $authenticationKey = $this->authenticationKey ?? config('laravel-fcm.authentication_key');
 
-        $response = Http::withHeaders([
+        return Http::withHeaders([
             'Authorization' => 'key=' . $authenticationKey
         ])->post(self::API_URI, $fields);
-
-        return $response;
     }
 
-    private function validateToken($tokens)
+    /**
+     * @throws UnsupportedTokenFormat
+     */
+    private function validateToken(array|string $tokens): array
     {
         if (is_array($tokens)) {
             return $tokens;
