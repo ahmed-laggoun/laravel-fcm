@@ -13,30 +13,48 @@
             "email": "marien@smirlech.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "SmirlTech\\LaravelFcm\\": "src/"
-        },
-        "files" : [
-            "src/Helpers/All.php"
-        ]
-    },
     "require": {
         "php": "^8.1",
         "illuminate/support": "^8.0|^9.0|^10.0",
         "illuminate/notifications": "^8.0|^9.0|^10.0",
         "spatie/laravel-package-tools": "^1.14.1"
     },
-    "config": {
-        "sort-packages": true
+    "require-dev": {
+        "laravel/pint": "^1.6",
+        "nunomaduro/collision": "^7.6",
+        "orchestra/testbench": "^8.0.8",
+        "pestphp/pest": "^2.7",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpunit/phpunit": "^10.2.2"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "SmirlTech\\LaravelFcm\\": "src",
+            "SmirlTech\\LaravelFcm\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SmirlTech\\LaravelFcm\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelFcmServiceProvider"
-            ]
+                "SmirlTech\\LaravelFcm\\Providers\\LaravelFcmServiceProvider"
+            ],
+            "aliases": {
+                "LaravelFcm": "SmirlTech\\LaravelFcm\\Facades\\LaravelFcm"
+            }
         }
-    }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
