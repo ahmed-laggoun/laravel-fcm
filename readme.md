@@ -15,7 +15,7 @@
 
 ### Introduction
 
-**Larafirebase** is a package thats offers you to send push notifications or custom messages via Firebase in Laravel.
+**LaravelFcm** is a package thats offers you to send push notifications or custom messages via Firebase in Laravel.
 
 Firebase Cloud Messaging (FCM) is a cross-platform messaging solution that lets you reliably deliver messages at no cost.
 
@@ -34,7 +34,7 @@ composer require smirltech/laravel-fcm
 
 **Copy Config**
 
-Run `php artisan vendor:publish --provider="SmirlTech\LaravelFcm\Providers\LaravelFcmServiceProvider"` to publish the `larafirebase.php` config file.
+Run `php artisan vendor:publish --provider="SmirlTech\LaravelFcm\Providers\LaravelFcmServiceProvider"` to publish the `laravel-fcm.php` config file.
 
 **Get Athentication Key**
 
@@ -43,7 +43,7 @@ Get Authentication Key from https://console.firebase.google.com/
 **Configure laravel-fcm.php as needed**
 
 ```
-'authentication_key' => '{AUTHENTICATION_KEY}'
+'server_key' => '{FCM_SERVER_KEY}'
 ```
 
 ### Usage
@@ -127,7 +127,7 @@ class SendBirthdayReminder extends Notification
 
 ### Tips
 - Check example how to receive messages or push notifications in a [JavaScript client](/javascript-client).
-- You can use `larafirebase()` helper instead of Facade.
+- You can use `laravelfcm()` helper instead of Facade.
 
 
 ### Payload
@@ -137,7 +137,7 @@ Check how is formed payload to send to firebase:
 Example 1:
 
 ```php
-Larafirebase::withTitle('Test Title')->withBody('Test body')->sendNotification('token1');
+laravelFcm::withTitle('Test Title')->withBody('Test body')->sendNotification('token1');
 ```
 
 ```json
@@ -156,7 +156,7 @@ Larafirebase::withTitle('Test Title')->withBody('Test body')->sendNotification('
 Example 2:
 
 ```php
-Larafirebase::withTitle('Test Title')->withBody('Test body')->sendMessage('token1');
+laravelFcm::withTitle('Test Title')->withBody('Test body')->sendMessage('token1');
 ```
 
 ```json
@@ -174,7 +174,7 @@ Larafirebase::withTitle('Test Title')->withBody('Test body')->sendMessage('token
 If you want to create payload from scratch you can use method `fromRaw`, for example:
 
 ```php
-return Larafirebase::fromRaw([
+return LaravelFbase::fromRaw([
     'registration_ids' => ['token1', 'token2'],
     'data' => [
         'key_1' => 'Value 1',
@@ -193,4 +193,4 @@ return Larafirebase::fromRaw([
 
 ---
 
-<sup>Made with ♥ by Gentrit Abazi ([@gentritabazi01](https://github.com/gentritabazi01)).</sup>
+<sup>This package is a fork of [kutia-software-company/larafirebase](https://github.com/kutia-software-company/larafirebase)</sup>

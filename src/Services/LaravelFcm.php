@@ -160,7 +160,7 @@ class LaravelFcm
 
     private function callApi($fields): Response
     {
-        $authenticationKey = $this->authenticationKey ?? config('laravel-fcm.authentication_key');
+        $authenticationKey = $this->authenticationKey ?? config('laravel-fcm.server_key');
 
         return Http::withHeaders([
             'Authorization' => 'key=' . $authenticationKey
