@@ -104,7 +104,7 @@ class LaravelFcm
         return $this;
     }
 
-    public function fromRaw($fromRaw): static
+    public function fromRaw(string $fromRaw): static
     {
         $this->fromRaw = $fromRaw;
 
