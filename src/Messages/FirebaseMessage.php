@@ -2,11 +2,11 @@
 
 namespace SmirlTech\LaravelFcm\Messages;
 
+use SmirlTech\LaravelFcm\Enums\MessagePriority;
 use SmirlTech\LaravelFcm\Facades\LaravelFcm;
 
 class FirebaseMessage
 {
-    const PRIORITY_NORMAL = 'normal';
 
     private string $title;
 
@@ -22,67 +22,67 @@ class FirebaseMessage
 
     private string $additionalData;
 
-    private string $priority = self::PRIORITY_NORMAL;
+    private MessagePriority $priority = MessagePriority::normal;
 
-    private string $fromArray;
+    private array $fromArray;
 
-    public function withTitle($title): static
+    public function withTitle(string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function withBody($body): static
+    public function withBody(string $body): static
     {
         $this->body = $body;
 
         return $this;
     }
 
-    public function withClickAction($clickAction): static
+    public function withClickAction(string $clickAction): static
     {
         $this->clickAction = $clickAction;
 
         return $this;
     }
 
-    public function withImage($image): static
+    public function withImage(string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function withIcon($icon): static
+    public function withIcon(string $icon): static
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function withSound($sound): static
+    public function withSound(string $sound): static
     {
         $this->sound = $sound;
 
         return $this;
     }
 
-    public function withAdditionalData($additionalData): static
+    public function withAdditionalData(string $additionalData): static
     {
         $this->additionalData = $additionalData;
 
         return $this;
     }
 
-    public function withPriority($priority)
+    public function withPriority(MessagePriority $priority): static
     {
         $this->priority = $priority;
 
         return $this;
     }
 
-    public function fromArray($fromArray)
+    public function fromArray(array $fromArray): static
     {
         $this->fromArray = $fromArray;
 
