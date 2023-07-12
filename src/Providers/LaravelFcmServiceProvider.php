@@ -48,10 +48,6 @@ class LaravelFcmServiceProvider extends PackageServiceProvider
      */
     public function bootingPackage(): void
     {
-       /* $this->publishes([
-            __DIR__. '/../Config/larafirebase.php' => config_path('larafirebase.php'),
-        ]);
-
-        $this->app->bind('larafirebase', LaravelFcm::class);*/
+        $this->app->bind('LaravelFcm', LaravelFcm::class);
     }
 }

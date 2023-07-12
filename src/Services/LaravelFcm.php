@@ -10,27 +10,27 @@ use SmirlTech\LaravelFcm\Exceptions\UnsupportedTokenFormat;
 class LaravelFcm
 {
 
-    private string $title;
+    private ?string $title = null;
 
-    private string $body;
+    private ?string $body= null;
 
-    private string $clickAction;
+    private ?string $clickAction= null;
 
-    private string $image;
+    private ?string $image= null;
 
-    private string $icon;
+    private ?string $icon= null;
 
-    private array $additionalData;
+    private ?array $additionalData= null;
 
-    private string $sound;
+    private ?string $sound=null;
 
     private MessagePriority $priority = MessagePriority::normal;
 
-    private array $fromArray;
+    private ?array $fromArray=null;
 
-    private string $authenticationKey;
+    private ?string $authenticationKey=null;
 
-    private string $fromRaw;
+    private ?array $fromRaw=null;
 
     const API_URI = 'https://fcm.googleapis.com/fcm/send';
 
@@ -104,7 +104,7 @@ class LaravelFcm
         return $this;
     }
 
-    public function fromRaw(string $fromRaw): static
+    public function fromRaw(array $fromRaw): static
     {
         $this->fromRaw = $fromRaw;
 

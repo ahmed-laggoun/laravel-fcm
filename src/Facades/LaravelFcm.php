@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static withIcon(string $icon)
  * @method static withSound(string $sound)
  * @method static withPriority(string $priority)
- * @method static withAdditionalData(string $additionalData)
- * @method static withNotification(Notification $notification)
- * @method static withData(array $data)
- * @method static withAndroidConfig(AndroidConfig $androidConfig)
- * @method static withApnsConfig(ApnsConfig $apnsConfig)
- * @method static withWebpushConfig(WebpushConfig $webpushConfig)
- * @method static withFcmOptions(FcmOptions $fcmOptions)
+ * @method static withAdditionalData(array $additionalData)
+
  */
 class LaravelFcm extends Facade
 {
@@ -30,6 +25,6 @@ class LaravelFcm extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return self::class;
+        return 'LaravelFcm';
     }
 }
