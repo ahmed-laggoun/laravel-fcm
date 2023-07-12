@@ -3,6 +3,7 @@
 namespace SmirlTech\LaravelFcm\Channels;
 
 use Illuminate\Notifications\Notification;
+use SmirlTech\LaravelFcm\Messages\FirebaseMessage;
 
 class FirebaseChannel
 {
@@ -11,7 +12,7 @@ class FirebaseChannel
      */
     public function send($notifiable, Notification $notification): void
     {
-        /** @var \SmirlTech\LaravelFcm\FirebaseMessage $message */
+        /** @var FirebaseMessage $message */
         $message = $notification->toFirebase($notifiable);
     }
 }

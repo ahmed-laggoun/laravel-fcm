@@ -1,7 +1,5 @@
 <?php
 
 return [
-
-    'authentication_key' => null
-
+    'server_key' => env('FCM_SERVER_KEY', null),
 ];
