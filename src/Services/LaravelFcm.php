@@ -34,77 +34,77 @@ class LaravelFcm
 
     const API_URI = 'https://fcm.googleapis.com/fcm/send';
 
-    public function withTitle(string $title): static
+    public function withTitle(?string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function withBody(string $body): static
+    public function withBody(?string $body): static
     {
         $this->body = $body;
 
         return $this;
     }
 
-    public function withClickAction(string $clickAction): static
+    public function withClickAction(?string $clickAction): static
     {
         $this->clickAction = $clickAction;
 
         return $this;
     }
 
-    public function withImage(string $image): static
+    public function withImage(?string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function withIcon(string $icon): static
+    public function withIcon(?string $icon): static
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function withSound(string $sound): static
+    public function withSound(?string $sound): static
     {
         $this->sound = $sound;
 
         return $this;
     }
 
-    public function withPriority(MessagePriority $priority): static
+    public function withPriority(?MessagePriority $priority): static
     {
         $this->priority = $priority;
 
         return $this;
     }
 
-    public function withAdditionalData(array $additionalData): static
+    public function withAdditionalData(?array $additionalData): static
     {
         $this->additionalData = $additionalData;
 
         return $this;
     }
 
-    public function withAuthenticationKey(string $authenticationKey): static
+    public function withAuthenticationKey(?string $authenticationKey): static
     {
         $this->authenticationKey = $authenticationKey;
 
         return $this;
     }
 
-    public function fromArray(array $fromArray): static
+    public function fromArray(?array $fromArray): static
     {
         $this->fromArray = $fromArray;
 
         return $this;
     }
 
-    public function fromRaw(array $fromRaw): static
+    public function fromRaw(?array $fromRaw): static
     {
         $this->fromRaw = $fromRaw;
 
