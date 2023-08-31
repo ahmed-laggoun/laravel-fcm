@@ -130,6 +130,8 @@ class LaravelFcm
             'priority' => $this->priority
         );
 
+
+
         return $this->callApi($fields);
     }
 
@@ -161,6 +163,10 @@ class LaravelFcm
     private function callApi($fields): Response
     {
         $authenticationKey = $this->authenticationKey ?? config('laravel-fcm.server_key');
+
+        if (empty($authenticationKey)) {
+            throw new \InvalidArgumentException('Please provide the FCM server key in the config file or pass it as a parameter.');
+        }
 
         return Http::withHeaders([
             'Authorization' => 'key=' . $authenticationKey
