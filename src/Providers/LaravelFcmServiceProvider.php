@@ -36,7 +36,7 @@ class LaravelFcmServiceProvider extends PackageServiceProvider
         });
 
        /* $this->mergeConfigFrom(
-            __DIR__. '../../Config/larafirebase.php',
+            __DIR__. '../../cconfig/larafirebase.php',
             'larafirebase'
         );*/
     }
