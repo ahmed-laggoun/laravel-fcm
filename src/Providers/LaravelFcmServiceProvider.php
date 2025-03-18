@@ -18,7 +18,7 @@ class LaravelFcmServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-fcm')
-            ->hasConfigFile('laravel-fcm');
+            ->hasConfigFile('fcm');
     }
 
     /**
