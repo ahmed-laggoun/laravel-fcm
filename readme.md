@@ -29,7 +29,7 @@ Follow the steps below to install the package.
 **Composer**
 
 ```
-composer require smirltech/laravel-fcm
+composer require ahmed-laggoun/laravel-fcm
 ```
 
 **Copy Config**
